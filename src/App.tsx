@@ -26,7 +26,7 @@ function App() {
         <ToastContainer />
 
         <GlobalWrap>
-          <BrowserRouter>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <HeaderWrapper>
               <Header />
             </HeaderWrapper>
