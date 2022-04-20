@@ -6,4 +6,9 @@ module.exports = {
       plugin: cracoModuleFederation,
     },
   ],
+  webpack: {
+    alias: {
+      '@mui/styled-engine': '@mui/styled-engine-sc',
+    },
+  },
 };

@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import styled, { ThemeProvider } from 'styled-components';
+
+import { theme } from 'settings/styled-components';
+import store from 'store';
+
+import 'react-toastify/dist/ReactToastify.css';
+
+import HeaderWrapper from 'components/layout/Header';
+import ContentsWrapper from 'components/layout/Contents';
+import FooterWrapper from 'components/layout/Footer';
+
+import Todos from 'pages/Todos';
+import Header from 'pages/Header';
+
+import Footer from 'components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <ToastContainer />
+
+        <GlobalWrap>
+          <BrowserRouter>
+            <HeaderWrapper>
+              <Header />
+            </HeaderWrapper>
+
+            <ContentsWrapper>
+              <Switch>
+                <Route path="/todos" component={Todos} />
+              </Switch>
+            </ContentsWrapper>
+
+            <FooterWrapper>
+              <Footer />
+            </FooterWrapper>
+          </BrowserRouter>
+        </GlobalWrap>
+      </ThemeProvider>
+    </Provider>
   );
 }
+
+const GlobalWrap = styled.div`
+  position: absolute;
+  inset: 0px;
+  display: flex;
+  flex-flow: column nowrap;
+`;
 
 export default App;
