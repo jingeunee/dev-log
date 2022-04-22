@@ -1,7 +1,7 @@
 import List from '@mui/material/List';
 import { useSelector } from 'react-redux';
-import { IStoreState } from 'store';
 import styled from 'styled-components';
+import { IStoreState } from 'store';
 import TodoListRow from './TodoListRow';
 
 const TodoList = () => {
@@ -9,9 +9,13 @@ const TodoList = () => {
     store.TodosReducer.get('todoList').filter((o) => !o.get('isChecked')),
   );
 
+  const moveTodo = (dragIndex: number, hoverIndex: number) => {
+    console.log(dragIndex, hoverIndex);
+  };
+
   return (
     <StyledList sx={{ bgcolor: 'background.paper' }} dense={true}>
-      {todoList.map((o) => {
+      {todoList.map((o, i) => {
         const id = o.get('id');
         const isChecked = o.get('isChecked');
         const text = o.get('text');
@@ -19,9 +23,11 @@ const TodoList = () => {
         return (
           <TodoListRow
             key={`row-${id}`}
+            index={i}
             id={id}
             isChecked={isChecked}
             text={text}
+            moveTodo={moveTodo}
           />
         );
       })}

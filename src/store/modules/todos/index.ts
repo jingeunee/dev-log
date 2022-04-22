@@ -1,10 +1,9 @@
+import axios from 'axios';
 import { List, Record } from 'immutable';
 import { AnyAction } from 'redux';
 import { createAction, handleActions } from 'redux-actions';
-import { delay, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { IStoreState } from 'store';
-
-import { dummyData } from './dummy';
 
 const prefix = 'toods';
 
@@ -43,14 +42,28 @@ export function* TodosSaga() {
   yield takeLatest(ActionTypes.TRY_CREATE_TODO, CreateTodo);
   yield takeLatest(ActionTypes.TRY_DELETE_TODO, DeleteTodo);
 }
-function* FetchTodoList() {
+function* FetchTodoList(): Generator<any, any, any> {
   try {
     yield put({ type: ActionTypes.REQUEST_FETCH_TODO_LIST });
 
-    yield delay(200);
+    const response = yield call(() =>
+      axios
+        .get(`${process.env.REACT_APP_API_URL || ''}/todos`, {
+          headers: {},
+        })
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            return res;
+          }
+          throw res;
+        })
+        .then((res) => res.data)
+        .catch((err) => err),
+    );
+
     const results = {
-      rows: List(dummyData.map((o: any) => new TodoState(o))),
-      count: dummyData.length,
+      rows: List(response.map((o: any) => new TodoState(o))),
+      count: response.length,
     };
 
     yield put({ type: ActionTypes.SUCCESS_FETCH_TODO_LIST, payload: results });
@@ -62,14 +75,17 @@ function* CheckTodo(action: AnyAction) {
   try {
     yield put({ type: ActionTypes.REQUEST_CHECK_TODO });
 
-    yield delay(150);
-    // API call
-    (function () {
-      const findInx = dummyData.findIndex((o) => o.id === action.payload);
-      if (findInx > -1) {
-        dummyData[findInx].isChecked = !dummyData[findInx].isChecked;
-      }
-    })();
+    yield call(() =>
+      axios
+        .put(`${process.env.REACT_APP_API_URL}/todos/check/${action.payload}`)
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            return res;
+          }
+          throw res;
+        })
+        .catch((err) => Promise.reject(err)),
+    );
 
     const state: IStoreState = yield select();
     const todoList = state.TodosReducer.get('todoList');
@@ -87,16 +103,19 @@ function* CreateTodo(action: AnyAction) {
   try {
     yield put({ type: ActionTypes.REQUEST_CREATE_TODO });
 
-    yield delay(150);
-    // API call
-    (function () {
-      const newData = {
-        id: dummyData.length + 1,
-        text: action.payload,
-        isChecked: false,
-      };
-      dummyData.unshift(newData);
-    })();
+    yield call(() =>
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/todos`, {
+          text: action.payload,
+        })
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            return res;
+          }
+          throw res;
+        })
+        .catch((err) => Promise.reject(err)),
+    );
 
     yield put({ type: ActionTypes.SUCCESS_CREATE_TODO });
   } catch (error) {
@@ -107,14 +126,17 @@ function* DeleteTodo(action: AnyAction) {
   try {
     yield put({ type: ActionTypes.REQUEST_DELETE_TODO });
 
-    yield delay(150);
-    // API call
-    (function () {
-      const findInx = dummyData.findIndex((o) => o.id === action.payload);
-      if (findInx > -1) {
-        dummyData.splice(findInx, 1);
-      }
-    })();
+    yield call(() =>
+      axios
+        .delete(`${process.env.REACT_APP_API_URL}/todos/${action.payload}`)
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            return res;
+          }
+          throw res;
+        })
+        .catch((err) => Promise.reject(err)),
+    );
 
     yield put({ type: ActionTypes.SUCCESS_DELETE_TODO });
   } catch (error) {
@@ -136,7 +158,14 @@ const TodoRecord = Record<ITodo>({
   createdAt: 0,
   lastModifiedAt: 0,
 });
-export class TodoState extends TodoRecord {}
+export class TodoState extends TodoRecord {
+  constructor(props?: ITodo) {
+    if (props) {
+      props.isChecked = (props?.isChecked || ('' as string)) === 'T';
+    }
+    super(props);
+  }
+}
 
 interface ITodosState {
   fetchTodoListActionType: string;

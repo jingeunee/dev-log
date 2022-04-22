@@ -1,6 +1,8 @@
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import TodoList from 'components/todos/TodoList';
 import TodoInput from 'components/todos/TodoInput';
@@ -17,9 +19,11 @@ const Todos = () => {
           Todos
         </Typography>
 
-        <TodoInput />
-        <TodoList />
-        <CompletedTodoList />
+        <DndProvider backend={HTML5Backend}>
+          <TodoInput />
+          <TodoList />
+          <CompletedTodoList />
+        </DndProvider>
       </Box>
     </Container>
   );

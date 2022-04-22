@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import { useSelector } from 'react-redux';
 import { IStoreState } from 'store';
 import styled from 'styled-components';
-import TodoListRow from './TodoListRow';
+import CompletedTodoListRow from './CompletedTodoListRow';
 
 const CompletedTodoList = () => {
   const todoList = useSelector((store: IStoreState) =>
@@ -16,14 +16,15 @@ const CompletedTodoList = () => {
   return (
     <StyledList sx={{ bgcolor: 'background.paper' }} dense={true}>
       완료된 리스트
-      {todoList.map((o) => {
+      {todoList.map((o, i) => {
         const id = o.get('id');
         const isChecked = o.get('isChecked');
         const text = o.get('text');
 
         return (
-          <TodoListRow
+          <CompletedTodoListRow
             key={`completed-row-${id}`}
+            index={i}
             id={id}
             isChecked={isChecked}
             text={text}
