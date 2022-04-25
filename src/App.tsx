@@ -9,14 +9,8 @@ import store from 'store';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import HeaderWrapper from 'components/layout/Header';
-import ContentsWrapper from 'components/layout/Contents';
-import FooterWrapper from 'components/layout/Footer';
-
-import Todos from 'pages/Todos';
-import Header from 'pages/Header';
-
-import Footer from 'components/Footer';
+import AppRouter from 'pages/apps';
+import OauthRouter from 'pages/oauth';
 
 function App() {
   return (
@@ -27,19 +21,10 @@ function App() {
 
         <GlobalWrap>
           <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <HeaderWrapper>
-              <Header />
-            </HeaderWrapper>
-
-            <ContentsWrapper>
-              <Switch>
-                <Route path="/todos" component={Todos} />
-              </Switch>
-            </ContentsWrapper>
-
-            <FooterWrapper>
-              <Footer />
-            </FooterWrapper>
+            <Switch>
+              <Route path="/oauth" component={OauthRouter} />
+              <Route path="/" component={AppRouter} />
+            </Switch>
           </BrowserRouter>
         </GlobalWrap>
       </ThemeProvider>
