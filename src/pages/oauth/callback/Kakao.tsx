@@ -25,7 +25,7 @@ const OauthCallbackKakao = () => {
         Cookie.set('token', res.data.access_token || '');
 
         // 화면 돌아가기
-        window.location.replace('/');
+        window.location.replace('https://jingeunee.github.io/dev-log/');
       })
       .catch((err) => console.log(err));
   }, [code]);
