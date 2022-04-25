@@ -8,6 +8,7 @@ import { theme } from 'settings/styled-components';
 import store from 'store';
 
 import 'react-toastify/dist/ReactToastify.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
 import AppRouter from 'pages/apps';
 import OauthRouter from 'pages/oauth';

@@ -3,9 +3,13 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useFetchMe } from 'hooks/header/useFetchMe';
+
 const { REACT_APP_CLIENT_ID = '', REACT_APP_REDIRECT_URI = '' } = process.env;
 
 const Header = () => {
+  const { isFetchedMe, username } = useFetchMe();
+
   const onKakaoLogin = () => {
     const url = `https://kauth.kakao.com/oauth/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URI}&response_type=code`;
     window.location.href = url;
@@ -34,19 +38,23 @@ const Header = () => {
             </Link>
           </NavigationWrap>
 
-          <Button
-            variant="contained"
-            style={{
-              backgroundColor: '#FEE500',
-              color: '#000000',
-              borderRadius: '12px',
-              width: '120px',
-              marginLeft: 'auto',
-            }}
-            onClick={onKakaoLogin}
-          >
-            카카오 로그인
-          </Button>
+          {isFetchedMe ? (
+            username
+          ) : (
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: '#FEE500',
+                color: '#000000',
+                borderRadius: '12px',
+                width: '120px',
+                marginLeft: 'auto',
+              }}
+              onClick={onKakaoLogin}
+            >
+              카카오 로그인
+            </Button>
+          )}
         </HeaderRightMenuWrap>
       </HeaderContainer>
     </HeaderWrap>
