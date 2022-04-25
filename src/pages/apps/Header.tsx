@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -11,32 +12,94 @@ const Header = () => {
   };
 
   return (
-    <HeaderWrap>
-      <Link to="/">Home</Link>
-      <Link to="/todos">Todo</Link>
-      <Button
-        variant="contained"
-        color="warning"
-        style={{ marginLeft: 'auto' }}
-        onClick={onKakaoLogin}
-      >
-        카카오 로그인
-      </Button>
+    <HeaderWrap maxWidth={false}>
+      <HeaderContainer maxWidth="lg">
+        <TitleWrap>
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={() => (window.location.href = '/dev-log/')}
+          >
+            <h1>정진근의 Dev Log</h1>
+          </Button>
+        </TitleWrap>
+
+        <HeaderRightMenuWrap>
+          <NavigationWrap>
+            <Link to="/" color="inherit">
+              <h3>Blogs</h3>
+            </Link>
+            <Link to="/todos" color="inherit">
+              <h3>Todos</h3>
+            </Link>
+          </NavigationWrap>
+
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#FEE500',
+              color: '#000000',
+              borderRadius: '12px',
+              width: '120px',
+              marginLeft: 'auto',
+            }}
+            onClick={onKakaoLogin}
+          >
+            카카오 로그인
+          </Button>
+        </HeaderRightMenuWrap>
+      </HeaderContainer>
     </HeaderWrap>
   );
 };
 
-const HeaderWrap = styled.div`
-  height: 50px;
-  border-bottom: solid 1px #eee;
-  box-shadow: 0 0 2px 0 #eee;
+const HeaderWrap = styled(Container)`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: #212529;
+
+  color: white;
+  padding: 0;
+`;
+const HeaderContainer = styled(Container)`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
 
-  a,
-  button {
+  @media screen and (max-width: 768px) {
+    flex-flow: column nowrap;
+  }
+`;
+const TitleWrap = styled.div`
+  flex: 0 0 auto;
+`;
+const HeaderRightMenuWrap = styled.div`
+  margin-left: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    margin-left: unset;
+    width: 100%;
+  }
+`;
+const NavigationWrap = styled.div`
+  flex: 0 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-right: 20px;
+
+  & > * {
     margin: 0 10px;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 

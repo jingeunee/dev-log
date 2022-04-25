@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/IconButton';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Button from '@mui/material/Button';
 import { FormEvent, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -37,8 +36,13 @@ const TodoInput = () => {
         value={newTodo}
         onChange={(e) => setNewTodo(e.currentTarget.value)}
       />
-      <StyledButton type="submit">
-        {isCreatingTodo ? <CircleProgress /> : <AddCircleIcon />}
+      <StyledButton
+        type="submit"
+        variant="contained"
+        size="small"
+        disabled={isCreatingTodo}
+      >
+        {isCreatingTodo ? <CircleProgress /> : '추가'}
       </StyledButton>
     </StyledBox>
   );
@@ -47,6 +51,9 @@ const TodoInput = () => {
 const StyledBox = styled(Box)`
   display: flex;
   max-width: 400px;
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #eee;
 `;
 const StyledTextField = styled(TextField)`
   flex: 1 1 auto;

@@ -11,11 +11,11 @@ import styled from 'styled-components';
 import { ActionCtor } from 'store/modules/todos';
 import CircleProgress from 'components/CircleProgress';
 
-interface DragItem {
-  index: number;
-  id: string;
-  type: string;
-}
+// interface DragItem {
+//   index: number;
+//   id: string;
+//   type: string;
+// }
 
 interface IProps {
   index: number;
