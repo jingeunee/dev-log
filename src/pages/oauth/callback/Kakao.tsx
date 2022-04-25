@@ -13,10 +13,13 @@ const OauthCallbackKakao = () => {
       return;
     }
 
-    const url = `http://localhost:8080/oauth/kakao`;
+    const url =
+      process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_API_URL || ''
+        : 'http://localhost:8080';
 
     axios
-      .post(url, { code })
+      .post(`${url}/oauth/kakao`, { code })
       .then((res) => {
         // Access Token 저장
         Cookie.set('token', res.data.access_token || '');
