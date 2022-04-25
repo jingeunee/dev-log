@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.js": "/dev-log/static/js/main.fba64cb1.js",
-    "static/js/121.4a02aaa7.chunk.js": "/dev-log/static/js/121.4a02aaa7.chunk.js",
+    "main.js": "/dev-log/static/js/main.bd0407a2.js",
+    "static/js/229.ad4a1ad0.chunk.js": "/dev-log/static/js/229.ad4a1ad0.chunk.js",
+    "static/js/503.7649ae0d.chunk.js": "/dev-log/static/js/503.7649ae0d.chunk.js",
     "static/js/569.6c5ca93b.chunk.js": "/dev-log/static/js/569.6c5ca93b.chunk.js",
     "static/js/124.b945dadb.chunk.js": "/dev-log/static/js/124.b945dadb.chunk.js",
     "static/js/329.3795f5ca.chunk.js": "/dev-log/static/js/329.3795f5ca.chunk.js",
@@ -26,11 +27,12 @@
     "static/js/753.22dc5a1f.chunk.js": "/dev-log/static/js/753.22dc5a1f.chunk.js",
     "static/js/300.bcabbca3.chunk.js": "/dev-log/static/js/300.bcabbca3.chunk.js",
     "static/js/871.67f900de.chunk.js": "/dev-log/static/js/871.67f900de.chunk.js",
-    "static/css/267.a8b88570.chunk.css": "/dev-log/static/css/267.a8b88570.chunk.css",
-    "static/js/267.ca49c6d9.chunk.js": "/dev-log/static/js/267.ca49c6d9.chunk.js",
+    "static/css/446.fee922e0.chunk.css": "/dev-log/static/css/446.fee922e0.chunk.css",
+    "static/js/446.7cd7bf42.chunk.js": "/dev-log/static/js/446.7cd7bf42.chunk.js",
     "index.html": "/dev-log/index.html",
-    "main.fba64cb1.js.map": "/dev-log/static/js/main.fba64cb1.js.map",
-    "121.4a02aaa7.chunk.js.map": "/dev-log/static/js/121.4a02aaa7.chunk.js.map",
+    "main.bd0407a2.js.map": "/dev-log/static/js/main.bd0407a2.js.map",
+    "229.ad4a1ad0.chunk.js.map": "/dev-log/static/js/229.ad4a1ad0.chunk.js.map",
+    "503.7649ae0d.chunk.js.map": "/dev-log/static/js/503.7649ae0d.chunk.js.map",
     "569.6c5ca93b.chunk.js.map": "/dev-log/static/js/569.6c5ca93b.chunk.js.map",
     "124.b945dadb.chunk.js.map": "/dev-log/static/js/124.b945dadb.chunk.js.map",
     "329.3795f5ca.chunk.js.map": "/dev-log/static/js/329.3795f5ca.chunk.js.map",
@@ -55,10 +57,10 @@
     "753.22dc5a1f.chunk.js.map": "/dev-log/static/js/753.22dc5a1f.chunk.js.map",
     "300.bcabbca3.chunk.js.map": "/dev-log/static/js/300.bcabbca3.chunk.js.map",
     "871.67f900de.chunk.js.map": "/dev-log/static/js/871.67f900de.chunk.js.map",
-    "267.a8b88570.chunk.css.map": "/dev-log/static/css/267.a8b88570.chunk.css.map",
-    "267.ca49c6d9.chunk.js.map": "/dev-log/static/js/267.ca49c6d9.chunk.js.map"
+    "446.fee922e0.chunk.css.map": "/dev-log/static/css/446.fee922e0.chunk.css.map",
+    "446.7cd7bf42.chunk.js.map": "/dev-log/static/js/446.7cd7bf42.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.fba64cb1.js"
+    "static/js/main.bd0407a2.js"
   ]
 }
