@@ -2,6 +2,8 @@
 
 > 개발 기록을 위해 시작합니다.
 
+블로그 운영 및 하고싶은 프로젝트 가져다 붙이기
+
 Website link : https://jingeunee.github.io/dev-log/
 
 Backend project Repo : [dev-server](https://github.com/jingeunee/dev-server)
@@ -18,7 +20,7 @@ Backend project Repo : [dev-server](https://github.com/jingeunee/dev-server)
 - Styled Components
 - Material-ui
 - Tui Editor
-- Github Page
+- AWS s3, firebase hosting, Github Page...
 
 ### 📆 Todos Plan
 
@@ -28,6 +30,6 @@ Backend project Repo : [dev-server](https://github.com/jingeunee/dev-server)
 
 마이크로 프론트엔드 아키텍처 적용헤서 다 분리해버리고,
 
-스타일도 다듬고 할게 많네요
+스타일도 다듬고,
 
 생각나는대로 추가할 계획입니다.
