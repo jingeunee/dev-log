@@ -6,7 +6,7 @@ Website link : https://jingeunee.github.io/dev-log/
 
 Backend project Repo : [dev-server](https://github.com/jingeunee/dev-server)
 
-### Project Stack
+### 💻 Project Stack
 
 - React
 - React Router
@@ -20,7 +20,7 @@ Backend project Repo : [dev-server](https://github.com/jingeunee/dev-server)
 - Tui Editor
 - Github Page
 
-### Todos Plan
+### 📆 Todos Plan
 
 블로그도 만들고, 투두리스트도 만들고, 유저관리 페이지도 만들고,
 
