@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookie from 'js-cookie';
 import { List, Record } from 'immutable';
 import { AnyAction } from 'redux';
 import { createAction, handleActions } from 'redux-actions';
@@ -6,6 +7,10 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { IStoreState } from 'store';
 
 const prefix = 'toods';
+const url =
+  process.env.NODE_ENV === 'production'
+    ? process.env.REACT_APP_API_URL || ''
+    : 'http://localhost:8080';
 
 export const ActionTypes = {
   TRY_FETCH_TODO_LIST: `${prefix}/TRY_FETCH_TODO_LIST`,
@@ -48,8 +53,10 @@ function* FetchTodoList(): Generator<any, any, any> {
 
     const response = yield call(() =>
       axios
-        .get(`${process.env.REACT_APP_API_URL || ''}/todos`, {
-          headers: {},
+        .get(`${url}/todos`, {
+          headers: {
+            Authorization: `Bearer ${Cookie.get('token') || ''}`,
+          },
         })
         .then((res) => {
           if (res.status >= 200 && res.status < 300) {
@@ -77,7 +84,15 @@ function* CheckTodo(action: AnyAction) {
 
     yield call(() =>
       axios
-        .put(`${process.env.REACT_APP_API_URL}/todos/check/${action.payload}`)
+        .put(
+          `${url}/todos/check/${action.payload}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${Cookie.get('token') || ''}`,
+            },
+          },
+        )
         .then((res) => {
           if (res.status >= 200 && res.status < 300) {
             return res;
@@ -105,9 +120,17 @@ function* CreateTodo(action: AnyAction) {
 
     yield call(() =>
       axios
-        .post(`${process.env.REACT_APP_API_URL}/todos`, {
-          text: action.payload,
-        })
+        .post(
+          `${url}/todos`,
+          {
+            text: action.payload,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${Cookie.get('token') || ''}`,
+            },
+          },
+        )
         .then((res) => {
           if (res.status >= 200 && res.status < 300) {
             return res;
@@ -128,7 +151,11 @@ function* DeleteTodo(action: AnyAction) {
 
     yield call(() =>
       axios
-        .delete(`${process.env.REACT_APP_API_URL}/todos/${action.payload}`)
+        .delete(`${url}/todos/${action.payload}`, {
+          headers: {
+            Authorization: `Bearer ${Cookie.get('token') || ''}`,
+          },
+        })
         .then((res) => {
           if (res.status >= 200 && res.status < 300) {
             return res;

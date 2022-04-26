@@ -5,13 +5,22 @@ import styled from 'styled-components';
 
 import { useFetchMe } from 'hooks/header/useFetchMe';
 
-const { REACT_APP_CLIENT_ID = '', REACT_APP_REDIRECT_URI = '' } = process.env;
+const {
+  REACT_APP_CLIENT_ID = '',
+  REACT_APP_REDIRECT_URI = '',
+  REACT_APP_REDIRECT_URI_DEV = '',
+} = process.env;
+
+const REDIRECT_URI =
+  process.env.NODE_ENV === 'production'
+    ? REACT_APP_REDIRECT_URI
+    : REACT_APP_REDIRECT_URI_DEV;
 
 const Header = () => {
   const { isFetchedMe, username } = useFetchMe();
 
   const onKakaoLogin = () => {
-    const url = `https://kauth.kakao.com/oauth/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URI}&response_type=code`;
+    const url = `https://kauth.kakao.com/oauth/authorize?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
     window.location.href = url;
   };
 
