@@ -29,3 +29,5 @@ Backend project Repo : [dev-server](https://github.com/jingeunee/dev-server)
 마이크로 프론트엔드 아키텍처 적용헤서 다 분리해버리고,
 
 스타일도 다듬고 할게 많네요
+
+생각나는대로 추가할 계획입니다.
