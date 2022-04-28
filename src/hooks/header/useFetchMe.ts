@@ -24,7 +24,6 @@ export const useFetchMe = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setFetchedMe(true);
         setUsername(res.data.name);
       })
